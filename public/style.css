@@ -1,4 +1,407 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+html, body {
+  margin: 0;
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top, #123c6d, #020824 70%),
+    url("https://www.transparenttextures.com/patterns/stardust.png");
+  overflow-x: hidden;
+}
+
+/* Snow canvas */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.yugi-wrapper {
+  position: relative;
+  width: 220px;
+  margin: auto;
+}
+
+.yugi {
+  width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 0 30px gold;
+}
+
+.hat {
+  position: absolute;
+  width: 120px;
+  top: -30px;
+  left: 50px;
+}
+
+h1 {
+  text-shadow: 0 0 20px red;
+}
+
+#search {
+  display: block;
+  margin: 20px auto;
+  padding: 12px;
+  width: 60%;
+  border-radius: 25px;
+  border: none;
+  font-size: 18px;
+}
+
+#card-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.8),
+    0 0 30px rgba(255,215,0,0.6);
+}
+
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+#detail {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 5;
+  padding: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+#detail-content {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+#detail-content img {
+  width: 280px;
+}
+
+#close {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+#card-grid {
+  perspective: 1200px;
+}
+
+.card {
+  transform-style: flat;
+}
+
+.card img {
+  transition: transform 0.25s ease;
+}
+
+.card:hover img {
+  transform: none;
+}
+#card-grid {
+  margin-top: 5px;
+}
+.hero {
+  padding-bottom: 70px;
+}
+.hero {
+  padding-bottom: 70px;
+}
+
+#card-grid {
+  margin-top: 50px;
+}
+
+.dex-section {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.glass-title {
+
+  width: fit-content;
+  margin: 0 auto 20px;
+  padding: 14px 32px;
+  font-size: 28px;
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.6),
+    inset 0 0 20px rgba(255,255,255,0.15);
+
+  text-shadow: 0 0 12px rgba(255,255,255,0.6);
+
+}
+
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 30px 15px 60px;
+  }
+
+  .glass-title {
+    font-size: 22px;
+    padding: 12px 22px;
+  }
+
+  #search {
+    width: 90%;
+  }
+
+  #card-grid {
+    margin-top: 30px;
+    gap: 16px;
+  }
+
+  .card:hover {
+    animation: none; /* avoids jitter on touch */
+  }
+}
+#open-pack {
+  display: block;
+  margin: 0 auto 25px;
+  padding: 14px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, crimson, gold);
+  color: white;
+  box-shadow: 0 0 25px rgba(255,215,0,0.6);
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#open-pack:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px gold;
+}
+
+/* PACK OVERLAY */
+#pack-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #1b0033, #000);
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#pack-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.pack-card {
+  width: 140px;
+  height: 200px;
+  background: url("https://images.ygoprodeck.com/images/cards/back.jpg");
+  background-size: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  box-shadow: 0 0 30px rgba(255,215,0,0.7);
+}
+
+.pack-card.revealed {
+  transform: rotateY(180deg);
+}
+
+.pack-card img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+/* 🃏 Custom Cursor */
+* {
+  cursor: url("https://cur.cursors-4u.net/games/gam-4/gam328.cur"), auto;
+}
+#cursor-glow {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+
+  background: radial-gradient(circle, gold, rgba(255,215,0,0.2));
+  box-shadow: 0 0 20px gold;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s linear;
+}
+.card:hover ~ #cursor-glow {
+  box-shadow: 0 0 40px red;
+}
+
+.card-detail-content img {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.card-detail-content img:hover {
+  transform: scale(1);
+}
+
+/* Transition effect for card detail */
+.card-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.card-detail-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.card-detail-content {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  max-height: 80%;
+  overflow-y: auto;
+  transform: scale(0.8);
+  transition: transform 0.5s ease;
+}
+
+.card-detail-overlay.active .card-detail-content {
+  transform: scale(1);
+}
+
+.card.active {
+  box-shadow: 0 0 40px gold, 0 0 20px red;
+  transform: scale(1.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Card Popup Overlay */
+.card-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;            /* start hidden */
+  pointer-events: none;  /* 👈 important: hidden overlay won't block clicks */
+  transition: opacity 0.3s ease;
+}
+
+.card-popup.active {
+  opacity: 1;
+  pointer-events: all;   /* 👈 now active overlay can be interacted with */
+}
+
+.card-popup-content {
+  background: rgba(30,30,30,0.95);
+  border-radius: 15px;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  color: white;
+  overflow-y: auto;
+  max-height: 80%;
+}
+
+.card-popup-content img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+#card-popup-close {
+  background: crimson;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* 👈 important! lets clicks go through */
+}
+
+#view-summoned {
+  display: block;        /* allows margin auto */
+  margin: 20px auto;     /* centers horizontally */
+  padding: 14px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, purple, gold);
+  color: white;
+  box-shadow: 0 0 25px rgba(255,215,0,0.6);
+
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#view-summoned:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px gold;
 }

@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Express Static</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Hello from Express</h1>
-    <p>This file is being served!</p>
-  </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Yu-Gi-Oh! Christmas Dex</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="snow"></canvas>
+
+<header class="hero">
+  <div class="yugi-wrapper">
+    <img class="yugi"
+      src="https://images.ygoprodeck.com/images/cards/46986414.jpg">
+    <img class="hat"
+      src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Santa_hat.svg">
+  </div>
+
+  <h1>🎄 Yu-Gi-Oh! Christmas Dex 🎄</h1>
+  <p>300 Legendary Cards • Christmas Edition</p>
+</header>
+
+<div class="divider"></div>
+
+<button id="open-pack">🎁 Open Christmas Pack</button>
+<button id="view-summoned">🔮 View Summoned Cards</button>
+
+
+<input id="search" placeholder="Search cards...">
+
+<div id="card-grid"></div>
+
+<div id="detail" class="hidden">
+  <button id="close">⬅ Back</button>
+  <div id="detail-content"></div>
+</div>
+<div id="cursor-glow"></div>
+<div id="card-detail-overlay" class="card-detail-overlay">
+  <div id="card-detail-content" class="card-detail-content"></div>
+</div>
+
+<!-- Card Detail Popup -->
+<div id="card-popup" class="card-popup hidden">
+  <div id="card-popup-content" class="card-popup-content">
+    <button id="card-popup-close">❌ Close</button>
+    <div id="card-popup-info"></div>
+  </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
 </html>
